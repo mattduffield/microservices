@@ -1,0 +1,16 @@
+{
+  "name": "microservices",
+  "version": "1.0.0",
+  "description": "This is a sample using MQTT",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd src/server && node server.js"
+  },
+  "author": "Matt Duffield",
+  "license": "MIT",
+  "dependencies": {
+    "mqtt": "^1.7.2",
+    "nodemailer": "^2.2.1"
+  }
+}
