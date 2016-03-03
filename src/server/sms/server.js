@@ -5,14 +5,14 @@
 
 var mqtt = require("mqtt");
 var nodemailer = require("nodemailer");
-var config = require("../config/global");
+var constants = require("../config/constants");
 
 class SMS {
 
   constructor() {
     this.transporter = this.getMailTransport();
     this.mailOptions = {
-      from: config.mail.from,
+      from: constants.mail.from,
       to: '',
       subject: 'SMS Text',
       text: '',
@@ -21,13 +21,13 @@ class SMS {
   }
 
   init() {
-    this.client = mqtt.connect(config.mqtt.URL);
-    this.client.on(config.mqtt.CONNECT_TOPIC, () => {
+    this.client = mqtt.connect(constants.mqtt.URL);
+    this.client.on(constants.mqtt.CONNECT_TOPIC, () => {
 			this.outputText("SMS connected to MQTT");
-      this.client.subscribe(config.mqtt.SMS_TOPIC, {qos: 2});
+      this.client.subscribe(constants.mqtt.SMS_TOPIC, {qos: 2});
 		});  	
     this.client.on("message", (topic, payload) => {
-      if (topic === config.mqtt.SMS_TOPIC) {
+      if (topic === constants.mqtt.SMS_TOPIC) {
         this.outputText("Payload - " + payload)
         this.onSendSMS(payload);
       }
@@ -38,8 +38,8 @@ class SMS {
     return nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: config.mail.user,
-        pass: config.mail.pass
+        user: constants.mail.user,
+        pass: constants.mail.pass
       }
     });
   }

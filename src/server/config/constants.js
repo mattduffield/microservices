@@ -1,4 +1,11 @@
-exports.mqtt = {
+"use strict";
+
+class Constants {
+	constructor() {
+
+	}
+}
+const mqtt = {
 	URL: "mqtt://localhost:1883",
 	CONNECT_TOPIC: "connect", 
 	MESSAGE_TOPIC: "message",
@@ -10,8 +17,12 @@ exports.mqtt = {
 	SPAWN_SMS_SERVICE_TOPIC: "dc/sms",
 	SMS_TOPIC: "dc/send-sms"
 };
-exports.mail = { 
+const mail = { 
   user: "trd.hydra@gmail.com",
   pass: "h@1lhydr@",
   from: '"TRD Support" <trd.hydra@gmail.com>'
 };
+Constants.mqtt = mqtt;
+Constants.mail = mail;
+
+module.exports = Constants;

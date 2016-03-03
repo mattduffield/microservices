@@ -1,16 +1,16 @@
 "use strict";
 
 var mqtt = require("mqtt");
-var config = require("../config/global");
+var constants = require("../config/constants");
 
 class Sender {
 
   init() {
-    this.client = mqtt.connect(config.mqtt.URL);
-    this.client.on(config.mqtt.CONNECT_TOPIC, () => {
+    this.client = mqtt.connect(constants.mqtt.URL);
+    this.client.on(constants.mqtt.CONNECT_TOPIC, () => {
       setTimeout(() => {
         process.stdout.write("publishing..." + "\n");
-        this.client.publish(config.mqtt.CONNECTED_TOPIC, 'Sender is now connected');
+        this.client.publish(constants.mqtt.CONNECTED_TOPIC, 'Sender is now connected');
       },250);
 		});  	
   }
